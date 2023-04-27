@@ -1,0 +1,30 @@
+.admin-container {
+    display: flex;
+
+
+    .sidebar-container {
+        .pro-sidebar {
+            height: 100vh;
+
+        }
+    }
+
+    .admin-content {
+        width: 100%;
+
+        .admin-header {
+            height          : 9.5vh;
+            padding         : 0 2%;
+            border-bottom   : 1px solid rgb(235, 227, 227);
+            background-color: rgb(235, 235, 235);
+
+            .icon-collapse {
+                font-size : 1.5em;
+                display   : inline-block;
+                margin-top: 2%;
+            }
+        }
+
+        .admin-body {}
+    }
+}

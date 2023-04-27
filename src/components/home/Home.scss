@@ -1,0 +1,32 @@
+.banner-container {
+
+    video {
+        width     : 100vw;
+        position  : fixed;
+        top       : 0;
+        z-index   : -1;
+        object-fit: cover;
+        height    : 100vh;
+    }
+
+    .banner-info {
+        width      : 30%;
+        margin-top : 15%;
+        margin-left: 15%;
+    }
+
+    .banner-title {
+        font-size: 3vw;
+    }
+
+    .banner-description {
+        font-size: 1.3vw;
+        margin   : 5% auto;
+    }
+
+    .banner-btn {
+        button {
+            padding: 13px;
+        }
+    }
+}

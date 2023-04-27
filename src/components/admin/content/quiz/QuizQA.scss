@@ -1,0 +1,124 @@
+.manage-qa-container {
+    padding: 0 3%;
+
+    .add-new {
+        width : 80%;
+        margin: 0 auto;
+
+        .select-quiz {
+            .select-quiz-header {
+                font-size: 1.1em;
+            }
+
+            margin-top: 2%;
+            width     : 41%;
+
+        }
+
+        .add-question-header {
+            margin-bottom: -4.5%;
+            margin-top   : 20px;
+        }
+
+        .add-question-body {
+            .add-new-question {
+                margin-top: 3%;
+
+                .view-image {
+                    float : right;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: rgb(43, 57, 255);
+                    }
+                }
+
+                .btn-group {
+                    margin-top  : 6%;
+                    line-height : 65px;
+                    gap         : 25px;
+                    padding-left: 2%;
+
+                    .clear-image-btn {
+                        cursor   : pointer;
+                        font-size: 25px;
+
+                        &:hover {
+                            color: rgb(128, 128, 128);
+                        }
+                    }
+
+                    .add-icon {
+                        cursor   : pointer;
+                        color    : rgb(12, 186, 230);
+                        font-size: 1.3em;
+
+                        &:hover {
+                            color: rgb(28, 148, 179);
+                        }
+                    }
+
+                    .remove-icon {
+                        cursor   : pointer;
+                        color    : rgb(245, 143, 10);
+                        font-size: 1.4em;
+
+                        &:hover {
+                            color: rgb(185, 108, 6);
+                        }
+                    }
+                }
+
+            }
+
+            .add-new-answer {
+                margin-top: 2%;
+
+                .checkbox-container {
+                    width      : 3%;
+                    margin-top : 1%;
+                    margin-left: 3%;
+                    font-size  : 1.3em;
+                }
+
+                .btn-group {
+                    margin-top  : 10px;
+                    gap         : 25px;
+                    padding-left: 2%;
+
+                    .add-icon {
+                        cursor   : pointer;
+                        color    : rgb(12, 186, 230);
+                        font-size: 1.3em;
+
+                        &:hover {
+                            color: rgb(28, 148, 179);
+                        }
+                    }
+
+                    .remove-icon {
+                        cursor   : pointer;
+                        color    : rgb(245, 143, 10);
+                        font-size: 1.4em;
+
+                        &:hover {
+                            color: rgb(185, 108, 6);
+                        }
+                    }
+                }
+
+            }
+
+            .save-btn {
+                margin-top: 3%;
+
+            }
+
+        }
+
+        img {
+            max-width: 50%;
+        }
+
+    }
+}

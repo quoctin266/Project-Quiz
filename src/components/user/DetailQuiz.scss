@@ -1,0 +1,114 @@
+.detail-quiz-container {
+    display: flex;
+    padding: 4% 5%;
+    gap    : 2%;
+
+
+    .left-content {
+        width        : 60%;
+        border       : 2px solid #ccc;
+        border-radius: 5px;
+        padding      : 3%;
+
+        .title {
+            font-size    : 2em;
+            font-weight  : 600;
+            margin-bottom: 2%
+        }
+    }
+
+    .question-container {
+        .question {
+            .question-img {
+                text-align: center;
+                margin    : 5% auto;
+                height    : 30vh;
+
+                img {
+                    object-fit: contain;
+                    height    : 100%;
+                    width     : 100%;
+                }
+            }
+
+            .question-title {
+                font-size    : 1.4em;
+                font-weight  : 600;
+                margin-bottom: 2%;
+                margin-left  : 5%;
+            }
+        }
+
+        .answers {
+            margin-bottom: 5%;
+            margin-left  : 5%;
+            font-size    : 1.1em;
+        }
+    }
+
+
+    .footer {
+        display        : flex;
+        justify-content: center;
+        gap            : 2%;
+    }
+
+    .right-content {
+        width        : 38%;
+        border       : 2px solid #ccc;
+        border-radius: 5px;
+        padding      : 3%;
+
+        .timer {
+            font-size     : 1.7em;
+            font-weight   : 600;
+            border-bottom : 1px dashed gray;
+            text-align    : center;
+            padding-bottom: 30px;
+        }
+
+        .list-question {
+            display    : flex;
+            flex-wrap  : wrap;
+            gap        : 20px;
+            margin-top : 30px;
+            margin-left: 16px;
+
+            .question {
+
+                border-radius   : 50%;
+                font-size       : 1.1em;
+                background-color: #cacaca;
+                width           : 40px;
+                height          : 40px;
+                display         : flex;
+                align-items     : center;
+                justify-content : center;
+                cursor          : pointer;
+
+                &:hover {
+                    color           : rgb(238, 238, 238);
+                    background-color: rgb(156, 156, 156);
+                }
+
+                &.answered {
+                    background-color: rgb(59, 183, 255);
+                    color           : yellow;
+                    border          : none;
+
+                    &:hover {
+                        background-color: rgb(94, 209, 255);
+                    }
+
+                    &.current {
+                        border: 2px solid black;
+                    }
+                }
+
+                &.current {
+                    border: 2px solid black;
+                }
+            }
+        }
+    }
+}

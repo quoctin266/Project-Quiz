@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import NavigationBar from "./components/header/NavigationBar";
+import { Outlet } from "react-router-dom";
+import { Scrollbars } from "react-custom-scrollbars-2";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div className="header-container">
+        <NavigationBar />
+      </div>
+      <div className="body-container">
+        <Scrollbars
+          style={{ height: "93vh" }}
+          autoHide
+          // Hide delay in ms
+          autoHideTimeout={1000}
+          // Duration for hide animation in ms.
+          autoHideDuration={200}
         >
-          Learn React
-        </a>
-      </header>
+          <Outlet />
+        </Scrollbars>
+      </div>
     </div>
   );
 }

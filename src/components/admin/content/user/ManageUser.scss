@@ -1,0 +1,21 @@
+.manage-user-container {
+    padding: 0 2%;
+
+    .title {
+        margin     : 1% auto;
+        font-size  : 2em;
+        font-weight: 600;
+    }
+
+    .user-content {
+        .btn-add-new {
+            svg {
+                margin-bottom: 4px;
+            }
+        }
+
+        .users-table {
+            margin: 1% auto;
+        }
+    }
+}
