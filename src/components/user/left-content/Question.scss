@@ -5,7 +5,19 @@
 }
 
 .answers {
+    width    : 20%;
+    min-width: 200px;
+
     img {
         max-width: 50%;
     }
+
+    input {
+        cursor: pointer;
+    }
+
+    label {
+        cursor: pointer;
+    }
+
 }

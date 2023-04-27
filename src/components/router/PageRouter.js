@@ -3,7 +3,7 @@ import Admin from "../admin/Admin";
 import Home from "../home/Home";
 import App from "../../App";
 import ManageUser from "../../components/admin/content/user/ManageUser";
-import DashBoard from "../../components/admin/content/user/DashBoard";
+import DashBoard from "../admin/content/DashBoard";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,6 +16,7 @@ import ManageQuiz from "../admin/content/quiz/ManageQuiz";
 import ManageQA from "../admin/content/qa/ManageQA";
 import PrivateRoute from "../private-route/PrivateRoute";
 import { Suspense } from "react";
+import LimitedAccess from "./LimitedAccess";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
   {
     path: "/quiz/:id",
     element: <DetailQuiz />,
+  },
+  {
+    path: "/access-not-allowed",
+    element: <LimitedAccess />,
   },
   {
     path: "*",

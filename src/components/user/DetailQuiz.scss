@@ -1,6 +1,15 @@
+.breadcrumb-bar {
+    margin   : 30px 5%;
+    font-size: 1.2em;
+
+    a {
+        text-decoration: none;
+    }
+}
+
 .detail-quiz-container {
     display: flex;
-    padding: 4% 5%;
+    padding: 0 5%;
     gap    : 2%;
 
 

@@ -8,6 +8,8 @@ import Question from "./left-content/Question";
 import ModalResult from "./left-content/ModalResult";
 import { toast } from "react-toastify";
 import QuizSidebar from "./right-content/QuizSidebar";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
+import { NavLink } from "react-router-dom";
 
 const DetailQuiz = () => {
   const location = useLocation();
@@ -26,6 +28,7 @@ const DetailQuiz = () => {
       if (data?.DT) {
         let rawData = [...data.DT];
 
+        // refine data structure before giving to react state
         let newData = _.chain(rawData)
           // Group the elements of Array based on `id` property
           .groupBy("id")
@@ -40,6 +43,7 @@ const DetailQuiz = () => {
               }
               tempObj.answers.push(item.answers);
             }); //create objects that represent each question
+            tempObj.answers = _.orderBy(tempObj.answers, ["id"], ["asc"]);
             return { questionId: key, ...tempObj };
           })
           .value();
@@ -101,45 +105,61 @@ const DetailQuiz = () => {
   };
 
   return (
-    <div className="detail-quiz-container">
-      <div className="left-content">
-        <div className="title">
-          Quiz {quizId}: {location?.state?.quizTitle}
+    <>
+      <Breadcrumb className="breadcrumb-bar">
+        <Breadcrumb.Item>
+          <NavLink to="/">Home</NavLink>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <NavLink to="/user">User</NavLink>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active>Doing Quiz</Breadcrumb.Item>
+      </Breadcrumb>
+
+      <div className="detail-quiz-container">
+        <div className="left-content">
+          <div className="title">
+            Quiz {quizId}: {location?.state?.quizTitle}{" "}
+            {/* retrieve quiz title from list quiz page navigation */}
+          </div>
+          <hr />
+          <div className="question-container">
+            {/* passing current question infomation */}
+            <Question
+              data={
+                dataQuiz && dataQuiz.length > 0 ? dataQuiz[currentIndex] : {}
+              }
+              index={currentIndex}
+              handleSelectAnswer={handleSelectAnswer}
+            />
+          </div>
+          <div className="footer">
+            <Button variant="secondary" onClick={handlePrev}>
+              Prev
+            </Button>
+            <Button variant="primary" onClick={handleNext}>
+              Next
+            </Button>
+            <Button variant="warning" onClick={handleFinish}>
+              Finish
+            </Button>
+          </div>
         </div>
-        <hr />
-        <div className="question-container">
-          <Question
-            data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[currentIndex] : {}}
-            index={currentIndex}
-            handleSelectAnswer={handleSelectAnswer}
+        <div className="right-content">
+          <QuizSidebar
+            dataQuiz={dataQuiz}
+            handleFinish={handleFinish}
+            setCurrentIndex={setCurrentIndex}
+            currentIndex={currentIndex}
           />
         </div>
-        <div className="footer">
-          <Button variant="secondary" onClick={handlePrev}>
-            Prev
-          </Button>
-          <Button variant="primary" onClick={handleNext}>
-            Next
-          </Button>
-          <Button variant="warning" onClick={handleFinish}>
-            Finish
-          </Button>
-        </div>
-      </div>
-      <div className="right-content">
-        <QuizSidebar
-          dataQuiz={dataQuiz}
-          handleFinish={handleFinish}
-          setCurrentIndex={setCurrentIndex}
-          currentIndex={currentIndex}
+        <ModalResult
+          showModal={showModal}
+          setShowModal={setShowModal}
+          dataModal={dataModal}
         />
       </div>
-      <ModalResult
-        showModal={showModal}
-        setShowModal={setShowModal}
-        dataModal={dataModal}
-      />
-    </div>
+    </>
   );
 };
 

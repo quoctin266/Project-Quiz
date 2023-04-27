@@ -133,6 +133,17 @@ const postLogOut = (email, refresh_token) => {
   });
 };
 
+const getDashBoard = () => {
+  return axios.get(`api/v1/overview`);
+};
+
+const postRefreshToken = (email, refresh_token) => {
+  return axios.post(`api/v1/refresh-token`, {
+    email: email,
+    refresh_token: refresh_token,
+  });
+};
+
 export {
   postCreateNewUser,
   getAllUser,
@@ -154,4 +165,6 @@ export {
   getQuizWithQA,
   postUpsertQA,
   postLogOut,
+  getDashBoard,
+  postRefreshToken,
 };

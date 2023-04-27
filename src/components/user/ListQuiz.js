@@ -9,10 +9,11 @@ const ListQuiz = () => {
   const [quizArr, setQuizArr] = useState([]);
   const navigate = useNavigate();
 
+  // fetch data on page load
   const getQuizData = async () => {
     let data = await getQuizByUser();
     if (data?.DT) {
-      const listQuiz = data.DT.toSorted((a, b) => a.id - b.id);
+      const listQuiz = data.DT.toSorted((a, b) => a.id - b.id); // sort quiz ascending to id
       setQuizArr(listQuiz);
     }
   };
@@ -40,7 +41,7 @@ const ListQuiz = () => {
                     variant="primary"
                     onClick={() => {
                       navigate(`/quiz/${item.id}`, {
-                        state: { quizTitle: item.description },
+                        state: { quizTitle: item.description }, // send quiz title along when navigate to quiz detail page
                       });
                     }}
                   >

@@ -1,22 +1,25 @@
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
-import "./NotFound.scss";
+import "./LimitedAccess.scss";
 
-const NotFound = () => {
+const LimitedAccess = () => {
   const navigate = useNavigate();
   return (
-    <div className="not-found-container">
+    <div className="limited-access-container">
       <Alert variant="secondary" className="alert-message">
         <div>
-          <div className="text1">This Page Isn't Available</div>
+          <div className="text1">Access denied</div>
           <div className="text2">
-            The link may be broken, or the page may have been removed. Check to
-            see if the link you're trying to open is correct.
+            You don't have permissions to access this page.
+          </div>
+          <div className="text3">
+            Contact an administrator to get permissions or go to the home page
+            and browse other pages.
           </div>
         </div>
         <Button
-          variant="primary"
+          variant="success"
           onClick={() => {
             navigate("/");
           }}
@@ -28,4 +31,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default LimitedAccess;

@@ -4,9 +4,28 @@ import SideBar from "./SideBar";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Scrollbars } from "react-custom-scrollbars-2";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { useDispatch, useSelector } from "react-redux";
+import { postLogOut } from "../../services/APIService";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { userLogout } from "../../redux/action/userAction";
+import Language from "../header/Language";
 
 const Admin = () => {
   const [collapsed, setCollapsed] = useState(false);
+
+  const dispatch = useDispatch();
+  const account = useSelector((state) => state.userAccount.account);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    let data = await postLogOut(account.email, account.refresh_token);
+    if (data?.DT) {
+      dispatch(userLogout()); // clear data on redux
+      navigate("/login");
+    } else toast.error(data.EM);
+  };
   return (
     <div className="admin-container">
       <div className="sidebar-container">
@@ -17,6 +36,29 @@ const Admin = () => {
           <span className="icon-collapse">
             <FaBars onClick={() => setCollapsed(!collapsed)} />
           </span>
+          <div className="setting">
+            <div className="account-setting">
+              <NavDropdown
+                title="Account"
+                id="collasible-nav-dropdown"
+                drop="down-centered"
+              >
+                <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
+
+                <NavDropdown.Item href="#action/3.2">
+                  Help &amp; support
+                </NavDropdown.Item>
+
+                <NavDropdown.Divider />
+                <NavDropdown.Item onClick={() => handleLogout()}>
+                  Log out
+                </NavDropdown.Item>
+              </NavDropdown>
+            </div>
+            <div className="language-setting">
+              <Language />
+            </div>
+          </div>
         </div>
         <div className="admin-body">
           <Scrollbars

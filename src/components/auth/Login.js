@@ -28,6 +28,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // toogle show/hide password base on input type
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text");
@@ -64,7 +65,6 @@ const Login = () => {
     if (data && data.DT) {
       let dataPayload = {
         ...data.DT,
-        password: password,
         rememberLogin: rememberLogin,
       };
       dispatch(userLogin(dataPayload)); //send user info to redux
@@ -93,8 +93,10 @@ const Login = () => {
         >
           Sign up
         </Button>
-        <Language />
+
+        <Language className="language" />
       </div>
+
       <div className="title">Learn By Quiz</div>
       <div className="welcome">Login</div>
       <div className="form-content">
@@ -138,7 +140,7 @@ const Login = () => {
             className="login-btn"
             variant="dark"
             type="submit"
-            disabled={loading}
+            disabled={loading} // button disabled while calling API
           >
             {loading && <ImSpinner2 className="loading-icon" />}
             <span> Login</span>

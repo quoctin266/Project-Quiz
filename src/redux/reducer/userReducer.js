@@ -1,4 +1,8 @@
-import { LOGIN_SUCCESS_FETCH_USER, USER_LOGOUT } from "../action/userAction";
+import {
+  LOGIN_SUCCESS_FETCH_USER,
+  USER_LOGOUT,
+  RENEW_TOKEN,
+} from "../action/userAction";
 
 const initState = {
   account: {
@@ -31,7 +35,6 @@ const userReducer = (state = initState, action) => {
       };
 
     case USER_LOGOUT:
-      console.log("check state", state);
       return {
         account: {
           access_token: "",
@@ -43,6 +46,16 @@ const userReducer = (state = initState, action) => {
           rememberLogin: state.account.rememberLogin, //store remember-login option
         },
         isAuthenticated: false,
+      };
+
+    case RENEW_TOKEN:
+      return {
+        account: {
+          ...state.account,
+          access_token: action?.payload?.access_token,
+          refresh_token: action?.payload?.refresh_token,
+        },
+        isAuthenticated: state.isAuthenticated,
       };
 
     default:

@@ -22,6 +22,7 @@ const Register = () => {
     navigate("/login");
   };
 
+  // toogle show/hide password base on input type
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text");
@@ -79,7 +80,7 @@ const Register = () => {
         <Button variant="outline-secondary" type="button" onClick={handleLogin}>
           Log in
         </Button>
-        <Language />
+        <Language className="language" />
       </div>
       <div className="title">Learn By Quiz</div>
       <div className="welcome">Free and always will be</div>
