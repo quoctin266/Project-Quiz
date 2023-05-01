@@ -9,11 +9,14 @@ import ModalResult from "./left-content/ModalResult";
 import { toast } from "react-toastify";
 import QuizSidebar from "./right-content/QuizSidebar";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const DetailQuiz = () => {
   const location = useLocation();
   const params = useParams();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
   const quizId = params.id;
 
   const [dataQuiz, setDataQuiz] = useState([]);
@@ -21,6 +24,8 @@ const DetailQuiz = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [dataModal, setDataModal] = useState({});
+
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -75,18 +80,21 @@ const DetailQuiz = () => {
       dataQuiz.forEach((question) => {
         let result = {
           questionId: +question.questionId,
-          userAnswerId: [], //array containing all chosen answer id
+          userAnswerId: [], //array containing chosen answer id in each question
         };
+
         question.answers.forEach((answer) => {
           if (answer.isSelected) result.userAnswerId.push(answer.id);
         });
+
         submitData.answers.push(result);
       });
       let data = await postSubmitQuiz(submitData);
       if (data?.DT) {
         setDataModal({ ...data.DT });
         setShowModal(true);
-      } else toast.error(data.EM);
+        setSubmitted(true);
+      } else toast.error(`${t("users.notification.errorSubmit")}`);
     }
   };
 
@@ -104,16 +112,38 @@ const DetailQuiz = () => {
     setDataQuiz(dataQuizCopy);
   };
 
+  const handleShowAnswers = () => {
+    let userSubmitData = dataModal.quizData;
+    let resultData = _.cloneDeep(dataQuiz);
+
+    //  comparing between original data and data from user submit, mark user selection and the correct answer for displaying
+    resultData.forEach((question, qIndex) => {
+      question.answers.forEach((answer) => {
+        // finding user selection and mark it
+        if (answer.id === userSubmitData[qIndex].userAnswers[0])
+          answer.isSelected = true;
+
+        // finding and marking the correct answer
+        if (answer.id === userSubmitData[qIndex].systemAnswers[0].id)
+          answer.isCorrect = true;
+        else answer.isCorrect = false;
+      });
+    });
+    setDataQuiz(resultData);
+  };
+
   return (
     <>
       <Breadcrumb className="breadcrumb-bar">
-        <Breadcrumb.Item>
-          <NavLink to="/">Home</NavLink>
+        <Breadcrumb.Item onClick={() => navigate("/")}>
+          {t("users.quiz.header.homeNavigate")}
         </Breadcrumb.Item>
-        <Breadcrumb.Item>
-          <NavLink to="/user">User</NavLink>
+        <Breadcrumb.Item onClick={() => navigate("/user")}>
+          {t("users.quiz.header.userNavigate")}
         </Breadcrumb.Item>
-        <Breadcrumb.Item active>Doing Quiz</Breadcrumb.Item>
+        <Breadcrumb.Item active>
+          {t("users.quiz.header.currentQuiz")}
+        </Breadcrumb.Item>
       </Breadcrumb>
 
       <div className="detail-quiz-container">
@@ -131,18 +161,25 @@ const DetailQuiz = () => {
               }
               index={currentIndex}
               handleSelectAnswer={handleSelectAnswer}
+              submitted={submitted}
             />
           </div>
           <div className="footer">
             <Button variant="secondary" onClick={handlePrev}>
-              Prev
+              {t("users.quiz.buttonGroup.previousButton")}
             </Button>
             <Button variant="primary" onClick={handleNext}>
-              Next
+              {t("users.quiz.buttonGroup.nextButton")}
             </Button>
-            <Button variant="warning" onClick={handleFinish}>
-              Finish
-            </Button>
+            {!submitted ? (
+              <Button variant="warning" onClick={handleFinish}>
+                {t("users.quiz.buttonGroup.finishButton")}
+              </Button>
+            ) : (
+              <Button variant="warning" onClick={() => navigate("/user")}>
+                {t("users.quiz.buttonGroup.doneButton")}
+              </Button>
+            )}
           </div>
         </div>
         <div className="right-content">
@@ -151,12 +188,14 @@ const DetailQuiz = () => {
             handleFinish={handleFinish}
             setCurrentIndex={setCurrentIndex}
             currentIndex={currentIndex}
+            submitted={submitted}
           />
         </div>
         <ModalResult
           showModal={showModal}
           setShowModal={setShowModal}
           dataModal={dataModal}
+          handleShowAnswers={handleShowAnswers}
         />
       </div>
     </>

@@ -3,9 +3,11 @@ import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
 import { deleteQuiz } from "../../../../services/APIService";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const ModalFormDeleteQuiz = (props) => {
   const [show, setShow] = useState(false);
+  const { t } = useTranslation();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -24,26 +26,30 @@ const ModalFormDeleteQuiz = (props) => {
   return (
     <>
       <Button variant="danger" onClick={handleShow}>
-        Delete
+        {t("admin.manageQuiz.quizTable.quizDelete.openformButton")}
       </Button>
 
       <Modal show={show} onHide={handleClose} backdrop="static">
         <Modal.Header closeButton>
-          <Modal.Title>Confirm delete quiz</Modal.Title>
+          <Modal.Title>
+            {t("admin.manageQuiz.quizTable.quizDelete.title")}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Are you sure to delete this quiz?
+          {t("admin.manageQuiz.quizTable.quizDelete.confirmMessage")}
           <br />
-          Name: <b>{props.item.name}</b>
+          {t("admin.manageQuiz.quizTable.quizDelete.name")}{" "}
+          <b>{props.item.name}</b>
           <br />
-          Description: <b>{props.item.description}</b>
+          {t("admin.manageQuiz.quizTable.quizDelete.description")}{" "}
+          <b>{props.item.description}</b>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Cancel
+            {t("admin.manageQuiz.quizTable.quizDelete.cancelButton")}
           </Button>
           <Button variant="primary" onClick={handleSubmitDelete}>
-            Confirm
+            {t("admin.manageQuiz.quizTable.quizDelete.confirmButton")}
           </Button>
         </Modal.Footer>
       </Modal>

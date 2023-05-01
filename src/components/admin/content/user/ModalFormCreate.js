@@ -9,6 +9,7 @@ import "./ModalFormCreate.scss";
 import { FcPlus } from "react-icons/fc";
 import { postCreateNewUser } from "../../../../services/APIService";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const ModalFormCreate = (props) => {
   const [show, setShow] = useState(false);
@@ -18,6 +19,8 @@ const ModalFormCreate = (props) => {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("USER");
   const [image, setImage] = useState("");
+
+  const { t } = useTranslation();
 
   const handleClose = () => {
     setPreviewImage("");
@@ -70,29 +73,38 @@ const ModalFormCreate = (props) => {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        <FcPlus /> Add New User
+        <FcPlus /> {t("admin.manageUser.formCreate.openformButton")}
       </Button>
 
       <Modal show={show} onHide={handleClose} size="xl" backdrop="static">
         <Modal.Header closeButton>
-          <Modal.Title>Add new user</Modal.Title>
+          <Modal.Title>{t("admin.manageUser.formCreate.title")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Row className="mb-3">
               <Form.Group as={Col}>
-                <Form.Label>Username</Form.Label>
+                <Form.Label>
+                  {t("admin.manageUser.formCreate.usernameLabel")}
+                </Form.Label>
                 <Form.Control
+                  placeholder={t(
+                    "admin.manageUser.formCreate.usernamePlaceholder"
+                  )}
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Password</Form.Label>
+                <Form.Label>
+                  {t("admin.manageUser.formCreate.passwordLabel")}
+                </Form.Label>
                 <Form.Control
                   type="password"
-                  placeholder="Password"
+                  placeholder={t(
+                    "admin.manageUser.formCreate.passwordPlaceholder"
+                  )}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -101,27 +113,39 @@ const ModalFormCreate = (props) => {
 
             <Row className="mb-3">
               <Form.Group as={Col}>
-                <Form.Label>Email</Form.Label>
+                <Form.Label>
+                  {t("admin.manageUser.formCreate.emailLabel")}
+                </Form.Label>
                 <Form.Control
                   type="email"
-                  placeholder="Enter email"
+                  placeholder={t(
+                    "admin.manageUser.formCreate.emailPlaceholder"
+                  )}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Role</Form.Label>
+                <Form.Label>
+                  {t("admin.manageUser.formCreate.roleLabel")}
+                </Form.Label>
                 <Form.Select onChange={(e) => setRole(e.target.value)}>
-                  <option value="USER">USER</option>
-                  <option value="ADMIN">ADMIN</option>
+                  <option value="USER">
+                    {t("admin.manageUser.formCreate.user")}
+                  </option>
+                  <option value="ADMIN">
+                    {t("admin.manageUser.formCreate.admin")}
+                  </option>
                 </Form.Select>
               </Form.Group>
             </Row>
 
             <Row className="mb-3">
               <Form.Group>
-                <Form.Label>Image</Form.Label>
+                <Form.Label>
+                  {t("admin.manageUser.formCreate.imageLabel")}
+                </Form.Label>
                 <Form.Control
                   type="file"
                   onChange={(e) => handleOnchangeImage(e)}
@@ -131,7 +155,7 @@ const ModalFormCreate = (props) => {
                     <Image src={previewImage} style={{ height: "20vh" }} />
                   ) : (
                     <span style={{ color: "rgb(180, 177, 177)" }}>
-                      Preview Image
+                      {t("admin.manageUser.formCreate.previewImage")}
                     </span>
                   )}
                 </div>
@@ -141,10 +165,10 @@ const ModalFormCreate = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            {t("admin.manageUser.formCreate.closeButton")}
           </Button>
           <Button variant="primary" onClick={handleSubmitAdd}>
-            Save
+            {t("admin.manageUser.formCreate.saveButton")}
           </Button>
         </Modal.Footer>
       </Modal>

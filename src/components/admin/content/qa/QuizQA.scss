@@ -1,22 +1,17 @@
 .manage-qa-container {
-    padding: 2% 3%;
-
-    .title {
-        font-size    : 2em;
-        font-weight  : 600;
-        margin-bottom: 2%;
-    }
+    padding: 0 3%;
 
     .add-new {
-        width : 80%;
-        margin: 0 auto;
+        width         : 80%;
+        margin        : 0 auto;
+        padding-bottom: 5%;
 
         .select-quiz {
             .select-quiz-header {
                 font-size: 1.1em;
             }
 
-            margin-top: 3%;
+            margin-top: 2%;
             width     : 41%;
 
         }
@@ -29,6 +24,15 @@
         .add-question-body {
             .add-new-question {
                 margin-top: 3%;
+
+                .view-image {
+                    float : right;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: rgb(43, 57, 255);
+                    }
+                }
 
                 .btn-group {
                     margin-top  : 6%;

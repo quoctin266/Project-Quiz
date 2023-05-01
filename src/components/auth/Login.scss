@@ -85,10 +85,17 @@
             margin-top: 6%;
             text-align: center;
             width     : 100%;
+            font-size : 1.1em;
 
             span {
                 cursor: pointer;
+
+                &:hover {
+                    font-weight: 600;
+                }
             }
+
+
         }
     }
 

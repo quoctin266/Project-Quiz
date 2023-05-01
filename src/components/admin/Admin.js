@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { userLogout } from "../../redux/action/userAction";
 import Language from "../header/Language";
+import { useTranslation } from "react-i18next";
 
 const Admin = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -18,6 +19,7 @@ const Admin = () => {
   const dispatch = useDispatch();
   const account = useSelector((state) => state.userAccount.account);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleLogout = async () => {
     let data = await postLogOut(account.email, account.refresh_token);
@@ -39,19 +41,21 @@ const Admin = () => {
           <div className="setting">
             <div className="account-setting">
               <NavDropdown
-                title="Account"
+                title={t("admin.header.options")}
                 id="collasible-nav-dropdown"
                 drop="down-centered"
               >
-                <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
+                {/* <NavDropdown.Item href="#action/3.1">
+                  {t("admin.header.profileOption")}
+                </NavDropdown.Item> */}
 
                 <NavDropdown.Item href="#action/3.2">
-                  Help &amp; support
+                  {t("admin.header.helpOption")}
                 </NavDropdown.Item>
 
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={() => handleLogout()}>
-                  Log out
+                  {t("admin.header.logoutOption")}
                 </NavDropdown.Item>
               </NavDropdown>
             </div>

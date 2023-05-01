@@ -13,10 +13,10 @@ import ListQuiz from "../user/ListQuiz";
 import DetailQuiz from "../user/DetailQuiz";
 import NotFound from "./NotFound";
 import ManageQuiz from "../admin/content/quiz/ManageQuiz";
-import ManageQA from "../admin/content/qa/ManageQA";
 import PrivateRoute from "../private-route/PrivateRoute";
 import { Suspense } from "react";
 import LimitedAccess from "./LimitedAccess";
+import QuizQA from "../admin/content/qa/QuizQA";
 
 const router = createBrowserRouter([
   {
@@ -48,12 +48,16 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "manage-users",
-        element: <ManageUser />,
+        path: "",
+        element: <DashBoard />,
       },
       {
         path: "dashboard",
         element: <DashBoard />,
+      },
+      {
+        path: "manage-users",
+        element: <ManageUser />,
       },
       {
         path: "manage-quiz",
@@ -61,7 +65,7 @@ const router = createBrowserRouter([
       },
       {
         path: "manage-qa",
-        element: <ManageQA />,
+        element: <QuizQA />,
       },
     ],
   },

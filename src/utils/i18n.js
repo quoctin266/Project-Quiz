@@ -3,6 +3,10 @@ import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import Backend from "i18next-http-backend";
 
+export const isEnglish = () => {
+  return i18n.language === "en" || i18n.language === "en-US";
+};
+
 i18n
   // i18next-http-backend
   // loads translations from your server

@@ -11,10 +11,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { getDashBoard } from "../../../services/APIService";
+import { useTranslation } from "react-i18next";
 
 const DashBoard = () => {
   const [dataOverview, setDataOverview] = useState([]);
   const [dataChart, setDataChart] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetchDataOverview();
@@ -45,11 +47,11 @@ const DashBoard = () => {
 
   return (
     <div className="dashboard-container">
-      <div className="title">Analytics Dashboard</div>
+      <div className="title">{t("admin.dashboard.title")}</div>
       <div className="dashboard-content">
         <div className="left-content">
           <div className="static">
-            <span className="text1">Total Accounts</span>
+            <span className="text1">{t("admin.dashboard.countAccount")}</span>
             <span className="text2">
               {dataOverview?.users?.total ? (
                 <>{dataOverview.users.total}</>
@@ -59,7 +61,7 @@ const DashBoard = () => {
             </span>
           </div>
           <div className="static">
-            <span className="text1">Total Admins</span>
+            <span className="text1">{t("admin.dashboard.countAdmin")}</span>
             <span className="text2">
               {dataOverview?.users?.countAdmin ? (
                 <>{dataOverview.users.countAdmin}</>
@@ -69,7 +71,7 @@ const DashBoard = () => {
             </span>
           </div>
           <div className="static">
-            <span className="text1">Total Users</span>
+            <span className="text1">{t("admin.dashboard.countUsers")}</span>
             <span className="text2">
               {dataOverview?.users?.countUsers ? (
                 <>{dataOverview.users.countUsers}</>
@@ -79,7 +81,7 @@ const DashBoard = () => {
             </span>
           </div>
           <div className="static">
-            <span className="text1">Total Quizzes</span>
+            <span className="text1">{t("admin.dashboard.countQuiz")}</span>
             <span className="text2">
               {dataOverview?.others?.countQuiz ? (
                 <>{dataOverview.others.countQuiz}</>

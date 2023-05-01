@@ -8,16 +8,21 @@
     width    : 20%;
     min-width: 200px;
 
+    .answer {
+        display    : flex;
+        gap        : 15px;
+        align-items: center;
+
+        input {
+            cursor: pointer;
+        }
+
+        label {
+            cursor: pointer;
+        }
+    }
+
     img {
         max-width: 50%;
     }
-
-    input {
-        cursor: pointer;
-    }
-
-    label {
-        cursor: pointer;
-    }
-
 }

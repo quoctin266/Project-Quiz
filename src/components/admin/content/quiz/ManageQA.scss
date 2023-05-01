@@ -1,5 +1,11 @@
 .manage-qa-container {
-    padding: 0 3%;
+    padding: 2% 3%;
+
+    .title {
+        font-size    : 2em;
+        font-weight  : 600;
+        margin-bottom: 2%;
+    }
 
     .add-new {
         width : 80%;
@@ -10,7 +16,7 @@
                 font-size: 1.1em;
             }
 
-            margin-top: 2%;
+            margin-top: 3%;
             width     : 41%;
 
         }

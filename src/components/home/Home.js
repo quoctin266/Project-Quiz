@@ -20,10 +20,7 @@ const Home = () => {
       </video>
       <div className="banner-info">
         <div className="banner-title">{t("home.bannerTitle")}</div>
-        <div className="banner-description">
-          You don't want to make a boring form. And your audience won't answer
-          one. Create a typeform instead—and make everyone happy.
-        </div>
+        <div className="banner-description">{t("home.bannerDescription")}</div>
         <div className="banner-btn">
           {isAuthenticated ? (
             <Button
@@ -32,7 +29,7 @@ const Home = () => {
                 navigate("/user");
               }}
             >
-              Start your quiz now
+              {t("home.buttonStartQuiz")}
             </Button>
           ) : (
             <Button
@@ -41,7 +38,7 @@ const Home = () => {
                 navigate("/register");
               }}
             >
-              Get started - it's free
+              {t("home.buttonSignup")}
             </Button>
           )}
         </div>

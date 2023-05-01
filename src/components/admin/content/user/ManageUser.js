@@ -3,11 +3,13 @@ import "./ManageUser.scss";
 import TableUser from "./TableUser";
 import { useEffect, useState } from "react";
 import { getUserPaginate } from "../../../../services/APIService";
+import { useTranslation } from "react-i18next";
 
 const ManageUser = () => {
   const [listUsers, setListUsers] = useState([]);
   const [pageCount, setPageCount] = useState(0); //don't display paginate if there's no user
   const [currentPage, setCurrentPage] = useState(1);
+  const { t } = useTranslation();
 
   const LIMIT_USER = 8; //max user per page
 
@@ -43,7 +45,7 @@ const ManageUser = () => {
 
   return (
     <div className="manage-user-container">
-      <div className="title">Manage User</div>
+      <div className="title">{t("admin.manageUser.title")}</div>
       <div className="user-content">
         <div className="btn-add-new">
           <ModalFormCreate

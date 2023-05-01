@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import "./AssignQuiz.scss";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const AssignQuiz = (props) => {
   const [selectedQuiz, setSelectedQuiz] = useState(null);
@@ -14,10 +15,12 @@ const AssignQuiz = (props) => {
   const [listUser, setListUser] = useState([]);
   const { listQuiz } = props;
 
-  let newListQuiz = listQuiz.map((quiz) => {
+  const { t } = useTranslation();
+
+  let newListQuiz = listQuiz.map((quiz, index) => {
     return {
       value: quiz.id,
-      label: `${quiz.id} - ${quiz.name}`,
+      label: `${index + 1} - ${quiz.name}`,
     };
   });
 
@@ -39,6 +42,11 @@ const AssignQuiz = (props) => {
   };
 
   const handleAssign = async () => {
+    if (!selectedQuiz || !selectedUser) {
+      toast.error("Please select quiz and user.");
+      return;
+    }
+
     let data = await postAssignQuiz(selectedQuiz.value, selectedUser.value);
     if (data && data.EC === 0) {
       toast.success(data.EM);
@@ -51,13 +59,17 @@ const AssignQuiz = (props) => {
         <Row>
           <Form.Group as={Col}>
             <div className="select-quiz">
-              <div className="select-quiz-header">Select Quiz:</div>
+              <div className="select-quiz-header">
+                {t("admin.manageQuiz.assignQuiz.selectQuiz")}
+              </div>
               <Select
                 defaultValue={selectedQuiz}
                 value={selectedQuiz}
                 onChange={setSelectedQuiz}
                 options={newListQuiz}
-                placeholder="Select..."
+                placeholder={t(
+                  "admin.manageQuiz.assignQuiz.selectQuizPlaceholder"
+                )}
                 className="mt-2"
               />
             </div>
@@ -65,13 +77,17 @@ const AssignQuiz = (props) => {
 
           <Form.Group as={Col}>
             <div className="select-user">
-              <div className="select-user-header">Select User:</div>
+              <div className="select-user-header">
+                {t("admin.manageQuiz.assignQuiz.selectUser")}
+              </div>
               <Select
                 defaultValue={selectedUser}
                 value={selectedUser}
                 onChange={setSelectedUser}
                 options={listUser}
-                placeholder="Select..."
+                placeholder={t(
+                  "admin.manageQuiz.assignQuiz.selectUserPlaceholder"
+                )}
                 className="mt-2"
               />
             </div>
@@ -79,7 +95,7 @@ const AssignQuiz = (props) => {
         </Row>
         <div className="save-btn">
           <Button variant="primary" onClick={() => handleAssign()}>
-            Assign
+            {t("admin.manageQuiz.assignQuiz.assignButton")}
           </Button>
         </div>
       </div>

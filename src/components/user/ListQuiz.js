@@ -4,10 +4,12 @@ import Card from "react-bootstrap/Card";
 import { getQuizByUser } from "../../services/APIService";
 import "./ListQuiz.scss";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const ListQuiz = () => {
   const [quizArr, setQuizArr] = useState([]);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   // fetch data on page load
   const getQuizData = async () => {
@@ -45,7 +47,7 @@ const ListQuiz = () => {
                       });
                     }}
                   >
-                    Start now
+                    {t("users.startButton")}
                   </Button>
                 </Card.Body>
               </Card>
@@ -53,7 +55,7 @@ const ListQuiz = () => {
           );
         })}
       {quizArr && quizArr.length === 0 && (
-        <div>No Quiz available currently...</div>
+        <div style={{ fontSize: "1.3em" }}>{t("users.noQuizMessage")}</div>
       )}
     </div>
   );

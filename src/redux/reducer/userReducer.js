@@ -2,6 +2,7 @@ import {
   LOGIN_SUCCESS_FETCH_USER,
   USER_LOGOUT,
   RENEW_TOKEN,
+  USER_UPDATE_PROFILE,
 } from "../action/userAction";
 
 const initState = {
@@ -54,6 +55,16 @@ const userReducer = (state = initState, action) => {
           ...state.account,
           access_token: action?.payload?.access_token,
           refresh_token: action?.payload?.refresh_token,
+        },
+        isAuthenticated: state.isAuthenticated,
+      };
+
+    case USER_UPDATE_PROFILE:
+      return {
+        account: {
+          ...state.account,
+          username: action?.payload?.username,
+          image: action?.payload?.image,
         },
         isAuthenticated: state.isAuthenticated,
       };

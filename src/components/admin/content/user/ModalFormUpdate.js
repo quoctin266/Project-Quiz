@@ -8,6 +8,7 @@ import Image from "react-bootstrap/Image";
 import "./ModalFormCreate.scss";
 import { putUpdateUser } from "../../../../services/APIService";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const ModalFormUpdate = (props) => {
   const [show, setShow] = useState(false);
@@ -17,6 +18,8 @@ const ModalFormUpdate = (props) => {
   const [username, setUsername] = useState(props.item.username);
   const [role, setRole] = useState(props.item.role);
   const [image, setImage] = useState("");
+
+  const { t } = useTranslation();
 
   const handleClose = () => {
     //closing without update, need to reset value
@@ -63,27 +66,40 @@ const ModalFormUpdate = (props) => {
   return (
     <>
       <Button variant="warning mx-3" onClick={handleShow}>
-        Update
+        {t("admin.manageUser.formUpdate.openformButton")}
       </Button>
 
       <Modal show={show} onHide={handleClose} size="xl" backdrop="static">
         <Modal.Header closeButton>
-          <Modal.Title>Update User Info</Modal.Title>
+          <Modal.Title>{t("admin.manageUser.formUpdate.title")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Row className="mb-3">
               <Form.Group as={Col}>
-                <Form.Label>Username</Form.Label>
+                <Form.Label>
+                  {t("admin.manageUser.formUpdate.usernameLabel")}
+                </Form.Label>
                 <Form.Control
+                  placeholder={t(
+                    "admin.manageUser.formUpdate.usernamePlaceholder"
+                  )}
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" disabled />
+                <Form.Label>
+                  {t("admin.manageUser.formUpdate.passwordLabel")}
+                </Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder={t(
+                    "admin.manageUser.formUpdate.passwordPlaceholder"
+                  )}
+                  disabled
+                />
               </Form.Group>
             </Row>
 
@@ -99,20 +115,28 @@ const ModalFormUpdate = (props) => {
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Role</Form.Label>
+                <Form.Label>
+                  {t("admin.manageUser.formUpdate.roleLabel")}
+                </Form.Label>
                 <Form.Select
                   onChange={(e) => setRole(e.target.value)}
                   defaultValue={role}
                 >
-                  <option value="USER">USER</option>
-                  <option value="ADMIN">ADMIN</option>
+                  <option value="USER">
+                    {t("admin.manageUser.formUpdate.user")}
+                  </option>
+                  <option value="ADMIN">
+                    {t("admin.manageUser.formUpdate.admin")}
+                  </option>
                 </Form.Select>
               </Form.Group>
             </Row>
 
             <Row className="mb-3">
               <Form.Group>
-                <Form.Label>Image</Form.Label>
+                <Form.Label>
+                  {t("admin.manageUser.formUpdate.imageLabel")}
+                </Form.Label>
                 <Form.Control
                   type="file"
                   onChange={(e) => handleOnchangeImage(e)}
@@ -122,7 +146,7 @@ const ModalFormUpdate = (props) => {
                     <Image src={previewImage} style={{ height: "20vh" }} />
                   ) : (
                     <span style={{ color: "rgb(180, 177, 177)" }}>
-                      Preview Image
+                      {t("admin.manageUser.formUpdate.previewImage")}
                     </span>
                   )}
                 </div>
@@ -132,10 +156,10 @@ const ModalFormUpdate = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            {t("admin.manageUser.formUpdate.closeButton")}
           </Button>
           <Button variant="primary" onClick={handleSubmitUpdate}>
-            Save
+            {t("admin.manageUser.formUpdate.saveButton")}
           </Button>
         </Modal.Footer>
       </Modal>

@@ -1,5 +1,313 @@
 {
+    "header": {
+        "homeNavigate": "Trang chủ",
+        "usersNavigate": "Người dùng",
+        "adminNavigate": "Quản trị",
+        "welcome": "Xin chào,",
+        "options": "Tài khoản",
+        "profileOption": "Trang cá nhân",
+        "helpOption": "Trợ giúp & Hỗ trợ",
+        "logoutOption": "Đăng xuất",
+        "loginOption": "Đăng nhập",
+        "signupOption": "Đăng ký",
+        "profile": {
+            "title": "Trang cá nhân",
+            "tab1": "Thông tin cá nhân",
+            "roleLabel": "Quyền truy cập",
+            "usernameLabel": "Tên người dùng",
+            "usernamePlaceholder": "Tên người dùng",
+            "imageLabel": "Hình ảnh",
+            "previewImage": "Ảnh preview",
+            "closeButton": "Đóng",
+            "saveButton": "Lưu",
+
+            "tab2": "Đổi mật khẩu",
+            "currentPassword": "Mật khẩu hiện tại",
+            "currentPasswordPlaceholder": "Mật khẩu",
+            "newPassword": "Mật khẩu mới",
+            "newPasswordPlaceholder": "Mật khẩu",
+            "confirmNewPassword": "Xác nhận mật khẩu mới",
+            "confirmNewPasswordPlaceholder": "Mật khẩu",
+            "confirmButton": "Xác nhận",
+
+            "tab3": "Lịch sử",
+            "listTitle": "Danh sách các lần làm bài",
+            "quizName": "Tên bài Quiz",
+            "countQuestion": "Số câu hỏi",
+            "countCorrect": "Số câu trả lời đúng",
+            "submitTime": "Thời gian nộp bài",
+            "emptyList": "Chưa có lượt làm bài nào..."
+        },
+        "notification": {
+            "logoutError": "Đăng xuất không thành công. Đã xảy ra lỗi"
+        }
+    },
+
     "home": {
-    "bannerTitle": "Có rất nhiều cách để học tốt hơn"
+    "bannerTitle": "Có rất nhiều cách để học tốt hơn",
+    "bannerDescription": "Đọc sách khiến bạn chán nản? Hãy làm cho việc học của bạn trở nên thú vị hơn! Học và củng cố kiến ​​thức thông qua vô số các bài Quiz tại đây. ",
+    "buttonStartQuiz": "Bắt đầu làm Quiz",
+    "buttonSignup": "Tạo tài khoản ngay"
+    },
+    
+    "users": {
+        "startButton": "Bắt đầu",
+        "noQuizMessage": "Hiện không có bài Quiz nào...",
+        "quiz": {
+            "header": {
+                "homeNavigate": "Trang chủ",
+                "userNavigate": "Người dùng",
+                "currentQuiz": "Bài Quiz"
+            },
+            "body": {
+                "question": "Câu"
+            },
+            "buttonGroup": {
+                "previousButton": "Câu trước",
+                "nextButton": "Câu sau",
+                "finishButton": "Nộp bài",
+                "doneButton": "Hoàn thành"
+            }
+        },
+        "result": {
+            "title": "Kết quả bài thi",
+            "questionCount": "Tổng số câu hỏi:",
+            "correctAnswerCount": "Số câu đúng:",
+            "closeButton": "Trở về",
+            "showAnswerButton": "Xem đáp án"
+        },
+        "notification": {
+            "errorSubmit": "Nộp bài không thành công. Đã xảy ra lỗi."
+        }
+    },
+
+    "login": {
+        "header": {
+            "message": "Bạn chưa có tài khoản?",
+            "signupButton": "Đăng ký ngay"
+        },
+        "body": {
+            "title": "Đăng nhập",
+            "emailLabel": "Địa chỉ Email",
+            "emailPlaceholder": "Nhập địa chỉ email",
+            "passwordLabel": "Mật khẩu",
+            "passwordPlaceholder": "Mật khẩu",
+            "resetPasswordLink": "Quên mật khẩu?",
+            "rememberOption": "Ghi nhớ",
+            "loginButton": "Đăng nhập",
+            "homeNavigate": "<< Về trang chủ"
+        },
+        "notification": {
+            "missingField": "Vui lòng điền thông tin đăng nhập!",
+            "invalidEmail": "Email không hợp lệ!",
+            "loginSuccess": "Đăng nhập thành công.",
+            "notFoundEmail": "Tài khoản không tồn tại.",
+            "wrongPassword": "Mật khẩu không chính xác.",
+            "error": "Đăng nhập thất bại. Đã xảy ra lỗi."
+        }
+        
+    },
+
+    "register": {
+        "header": {
+            "message": "Bạn đã có tài khoản rồi?",
+            "loginButton": "Đăng nhập ngay"
+        },
+        "body": {
+            "title": "Luôn miễn phí và sẽ mãi như vậy",
+            "emailLabel": "Địa chỉ Email",
+            "emailPlaceholder": "Nhập địa chỉ email",
+            "passwordLabel": "Mật khẩu",
+            "passwordPlaceholder": "Mật khẩu",
+            "usernameLabel": "Tên người dùng",
+            "usernamePlaceholder": "Tên người dùng",
+            "agreement": "Tôi đồng ý với Điều khoản dịch vụ, Chính sách quyền riêng tư và Thỏa thuận xử lý dữ liệu của LearnByQuiz.",
+            "registerButton": "Tạo tài khoản",
+            "homeNavigate": "<< Về trang chủ"
+        },
+        "notification": {
+            "missingField": "Vui lòng điền đầy đủ thông tin!",
+            "invalidEmail": "Email không hợp lệ!",
+            "invalidPassword": "Mật khẩu phải có tối thiểu 8 ký tự.",
+            "agreeTerms": "Vui lòng chấp nhận các điều khoản và điều kiện để hoàn tất đăng ký.",
+            "registerSuccess": "Tạo tài khoản thành công.",
+            "emailTaken": "Một tài khoản với email này đã tồn tại.",
+            "error": "Đăng ký không thành công. đã xảy ra lỗi."
+        }
+    },
+
+    "admin": {
+        "header": {
+            "options": "Thiết lập",
+            "profileOption": "Trang cá nhân",
+            "helpOption": "Trợ giúp & Hỗ trợ",
+            "logoutOption": "Đăng xuất"
+        },
+        "dashboard": {
+            "title": "Thống kê số liệu",
+            "countAccount": "Tổng số tài khoản",
+            "countAdmin": "Tổng số Admin",
+            "countUsers": "Tổng số người dùng",
+            "countQuiz": "Tổng số bài Quiz"
+        },
+        "manageUser": {
+            "title": "Quản lý người dùng",
+            "table": {
+                "number": "STT",
+                "username": "Tên người dùng",
+                "email": "Email",
+                "role": "Quyền truy cập",
+                "buttonGroup": "Thao tác",
+                "noUser":   "Không tìm thấy"
+            },
+            "paginatePrev": "< Trang trước",
+            "paginateNext": "Trang sau >",
+            "formCreate": {
+                "openformButton": "Thêm người dùng",
+                "title": "Thêm mới",
+                "usernameLabel": "Tên người dùng",
+                "usernamePlaceholder": "Tên người dùng",
+                "passwordLabel": "Mật khẩu",
+                "passwordPlaceholder": "Mật khẩu",
+                "emailLabel": "Email",
+                "emailPlaceholder": "Nhập email",
+                "roleLabel": "Quyền truy cập",
+                "user": "USER",
+                "admin": "ADMIN",
+                "imageLabel": "Hình ảnh",
+                "previewImage": "Ảnh preview",
+                "closeButton": "Hủy",
+                "saveButton": "Lưu"
+            },
+
+            "formDelete": {
+                "openButton": "Xóa",
+                "title": "Xác nhận xóa",
+                "confirmMessage": "Bạn có chắc muốn xóa người dùng này?",
+                "cancelButton": "Hủy",
+                "confirmButton": "Xác nhận"
+            },
+
+            "formUpdate": {
+                "openformButton": "Sửa",
+                "title": "Sửa thông tin",
+                "usernameLabel": "Tên người dùng",
+                "usernamePlaceholder": "Tên người dùng",
+                "passwordLabel": "Mật khẩu",
+                "passwordPlaceholder": "Mật khẩu",
+                "roleLabel": "Quyền truy cập",
+                "user": "USER",
+                "admin": "ADMIN",
+                "imageLabel": "Hình ảnh",
+                "previewImage": "Ảnh preview",
+                "closeButton": "Hủy",
+                "saveButton": "Lưu"
+            },
+
+            "formView": {
+                "openformButton": "Xem",
+                "title": "Thông tin người dùng",
+                "usernameLabel": "Tên người dùng",
+                "roleLabel": "Quyền truy cập",
+                "imageLabel": "Hình ảnh",
+                "previewImage": "Ảnh preview",
+                "closeButton": "Đóng"
+            }
+            
+        },
+
+        "manageQuiz": {
+            "title": "Quản lý bài Quiz",
+            "addQuiz": {
+                "header": "Thêm bài Quiz",
+                "title": "Chi tiết bài Quiz",
+                "nameLabel": "Tiêu đề",
+                "descriptionLabel": "Nội dung",
+                "selectPlaceholder": "Phân loại...",
+                "imageLabel": "Hình ảnh",
+                "previewImage": "Ảnh preview",
+                "saveButton": "Lưu"
+            },
+
+            "addQuizQA": {
+                "header": "Thêm nội dung bài Quiz",
+                "title": "Thêm câu hỏi & câu trả lời",
+                "select": "Chọn bài Quiz:",
+                "selectPlaceholder": "Chọn...",
+                "addQuestion": "Thêm câu hỏi:",
+                "imageLabel": "Tải lên hình ảnh:",
+                "viewImage": "Xem hình ảnh",
+                "clearImage": "Xóa hình ảnh",
+                "saveButton": "Lưu câu hỏi"
+            },
+
+            "assignQuiz": {
+                "header": "Giao bài Quiz cho người dùng",
+                "selectQuiz": "Chọn bài Quiz:",
+                "selectQuizPlaceholder": "Chọn...",
+                "selectUser": "Chọn người dùng:",
+                "selectUserPlaceholder": "Chọn...",
+                "assignButton": "Giao bài"
+            },
+
+            "quizTable": {
+                "title": "Danh sách bài Quiz",
+                "number": "STT",
+                "name": "Tiêu đề",
+                "description": "Nội dung",
+                "type": "Phân loại",
+                "buttonGroup": "Thao tác",
+
+                "quizDelete": {
+                    "openformButton": "Xóa",
+                    "title": "Xác nhận xóa",
+                    "confirmMessage": "Bạn có chắc muốn xóa bài Quiz này?",
+                    "name": "Tiêu đề:",
+                    "description": "Nội dung:",
+                    "cancelButton": "Hủy",
+                    "confirmButton": "Xác nhận"
+                },
+                "quizUpdate": {
+                    "openformButton": "Sửa",
+                    "title": "Sửa thông tin",
+                    "nameLabel": "Tiêu đề",
+                    "namePlaceholder": "Tiêu đề",
+                    "descriptionLabel": "Nội dung",
+                    "descriptionPlaceholder": "Nội dung",
+                    "difficultyLabel": "Phân loại",
+                    "easyOption": "DỄ",
+                    "mediumOption": "VỪA",
+                    "hardOption": "KHÓ",
+                    "imageLabel": "Hình ảnh",
+                    "closeButton": "Hủy",
+                    "saveButton": "Lưu"
+                }
+            }
+        },
+
+        "updateQuizQA": {
+            "select": "Chọn bài Quiz:",
+            "selectPlaceholder": "Chọn...",
+            "addQuestion": "Thêm câu hỏi:",
+            "imageLabel": "Tải lên hình ảnh:",
+            "viewImage": "Xem hình ảnh",
+            "clearImage": "Xóa hình ảnh",
+            "saveButton": "Lưu câu hỏi",
+            "emptyQuiz": "Chưa thêm câu hỏi nào..."
+        }
+       
+    },
+
+    "notFound": {
+        "title": "Nội dung không tồn tại",
+        "content": "Đường link bạn truy cập có thể bị hỏng hoặc trang có thể đã bị xóa. Kiểm tra xem đường link bạn đang mở có chính xác không.",
+        "homeNavigate": "Về trang chủ"
+    },
+
+    "limitedAccess": {
+        "title": "Truy cập bị từ chối",
+        "message1": "Bạn không có quyền truy cập trang này.",
+        "message2": "Liên hệ với quản trị viên để nhận quyền truy cập hoặc về trang chủ và xem các trang khác.",
+        "homeNavigate": "Về trang chủ"
     }
 }

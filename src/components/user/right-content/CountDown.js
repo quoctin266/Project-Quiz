@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 const CountDown = (props) => {
-  const [count, setCount] = useState(10000);
-  const { onTimesUp } = props;
+  const [count, setCount] = useState(3600);
+  const { onTimesUp, submitted } = props;
 
   const toHHMMSS = (secs) => {
     const sec_num = parseInt(secs, 10);
@@ -17,6 +17,8 @@ const CountDown = (props) => {
   };
 
   useEffect(() => {
+    if (submitted) return;
+
     if (count === 0) {
       onTimesUp();
       return;

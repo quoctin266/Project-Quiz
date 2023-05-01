@@ -3,20 +3,22 @@ import ModalFormUpdate from "./ModalFormUpdate";
 import ModalFormView from "./ModalFormView";
 import ModalFormDelete from "./ModalFormDelete";
 import ReactPaginate from "react-paginate";
+import { useTranslation } from "react-i18next";
 
 const TableUser = (props) => {
   const { listUsers, pageCount, currentPage } = props;
+  const { t } = useTranslation();
 
   return (
     <>
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>No</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Action</th>
+            <th>{t("admin.manageUser.table.number")}</th>
+            <th>{t("admin.manageUser.table.username")}</th>
+            <th>{t("admin.manageUser.table.email")}</th>
+            <th>{t("admin.manageUser.table.role")}</th>
+            <th>{t("admin.manageUser.table.buttonGroup")}</th>
           </tr>
         </thead>
         <tbody>
@@ -49,7 +51,7 @@ const TableUser = (props) => {
           {listUsers && listUsers.length === 0 && (
             <tr>
               <td colSpan={5} style={{ textAlign: "center" }}>
-                Not Found
+                {t("admin.manageUser.table.noUser")}
               </td>
             </tr>
           )}
@@ -58,12 +60,12 @@ const TableUser = (props) => {
 
       <div className="d-flex justify-content-center mt-5">
         <ReactPaginate
-          nextLabel="Next >"
+          nextLabel={t("admin.manageUser.paginateNext")}
           onPageChange={props.handlePageClick}
           pageRangeDisplayed={3}
           marginPagesDisplayed={2}
           pageCount={pageCount} //got from API
-          previousLabel="< Previous"
+          previousLabel={t("admin.manageUser.paginatePrev")}
           pageClassName="page-item"
           pageLinkClassName="page-link"
           previousClassName="page-item"

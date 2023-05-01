@@ -3,5 +3,10 @@
 .language {
     .dropdown-toggle::after {
         display: none;
+
+    }
+
+    &:hover {
+        color: rgb(0, 183, 255) !important;
     }
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Select from "react-select";
 import Form from "react-bootstrap/Form";
 import "./ManageQA.scss";
@@ -15,15 +15,19 @@ import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
 import { Lightbox } from "react-modal-image";
 import {
-  getAllQuizAdmin,
   postCreateQuestion,
   postCreateAnswer,
 } from "../../../../services/APIService";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
+import { isEnglish } from "../../../../utils/i18n";
 
-const ManageQA = () => {
+const ManageQA = (props) => {
+  const { t } = useTranslation();
+  const { listQuiz } = props;
+
   let initQuestion = [
     {
       id: uuidv4(),
@@ -42,26 +46,15 @@ const ManageQA = () => {
   ]; //for generating question and answer input field
 
   const [selectedQuiz, setSelectedQuiz] = useState(null);
-  const [listQuiz, setListQuiz] = useState([]);
   const [questions, setQuestions] = useState(initQuestion);
   const [previewImage, setPreviewImage] = useState("");
 
-  useEffect(() => {
-    fetchQuiz();
-  }, []); // get all quiz available when page load
-
-  const fetchQuiz = async () => {
-    let data = await getAllQuizAdmin();
-    if (data?.DT) {
-      let newListQuiz = data.DT.map((quiz) => {
-        return {
-          value: quiz.id,
-          label: `${quiz.id} - ${quiz.name}`,
-        };
-      });
-      setListQuiz(newListQuiz);
-    }
-  };
+  let newListQuiz = listQuiz.map((quiz, index) => {
+    return {
+      value: quiz.id,
+      label: `${index + 1} - ${quiz.name}`,
+    };
+  });
 
   const handleAddQuestion = () => {
     let question = {
@@ -276,21 +269,25 @@ const ManageQA = () => {
 
   return (
     <div className="manage-qa-container">
-      <div className="title">Manage QA</div>
+      <div className="title">{t("admin.manageQuiz.addQuizQA.title")}</div>
       <hr />
       <div className="add-new">
         <div className="select-quiz">
-          <div className="select-quiz-header">Select Quiz:</div>
+          <div className="select-quiz-header">
+            {t("admin.manageQuiz.addQuizQA.select")}
+          </div>
           <Select
             defaultValue={selectedQuiz}
             value={selectedQuiz}
             onChange={setSelectedQuiz}
-            options={listQuiz}
-            placeholder="Select..."
+            options={newListQuiz}
+            placeholder={t("admin.manageQuiz.addQuizQA.selectPlaceholder")}
             className="mt-2"
           />
         </div>
-        <div className="add-question-header">Add Questions:</div>
+        <div className="add-question-header">
+          {t("admin.manageQuiz.addQuizQA.addQuestion")}
+        </div>
         <div className="add-question-body">
           {questions &&
             questions.length > 0 &&
@@ -307,7 +304,11 @@ const ManageQA = () => {
                         <Form.Label></Form.Label>
                         <FloatingLabel
                           controlId="floatingDescription"
-                          label={`Question ${index + 1}'s Description`}
+                          label={
+                            isEnglish()
+                              ? `Question ${index + 1}'s Description`
+                              : `Nội dung câu hỏi ${index + 1}`
+                          }
                         >
                           <Form.Control
                             isInvalid={question.isInvalidQuestion}
@@ -322,15 +323,18 @@ const ManageQA = () => {
 
                       <Form.Group as={Col} className="col-3">
                         <Form.Label className="w-100">
-                          <span>Upload Image:</span>
+                          <span>
+                            {t("admin.manageQuiz.addQuizQA.imageLabel")}
+                          </span>
                           {
                             // display view image option if there is image
                             question.image && (
                               <span
-                                style={{ float: "right", cursor: "pointer" }}
+                                className="view-image"
                                 onClick={() => handlePreviewImage(question.id)}
                               >
-                                View image <FaImage />
+                                {t("admin.manageQuiz.addQuizQA.viewImage")}{" "}
+                                <FaImage />
                               </span>
                             )
                           }
@@ -354,7 +358,9 @@ const ManageQA = () => {
                             <OverlayTrigger
                               placement="top"
                               overlay={
-                                <Tooltip id="tooltip-top">Clear Image</Tooltip>
+                                <Tooltip id="tooltip-top">
+                                  {t("admin.manageQuiz.addQuizQA.clearImage")}
+                                </Tooltip>
                               }
                             >
                               <span>
@@ -418,7 +424,11 @@ const ManageQA = () => {
                               >
                                 <FloatingLabel
                                   controlId="floatingAnswer1"
-                                  label={`Answer ${index + 1}`}
+                                  label={
+                                    isEnglish()
+                                      ? `Answer ${index + 1}`
+                                      : `Đáp án ${index + 1}`
+                                  }
                                 >
                                   <Form.Control
                                     isInvalid={answer.isInvalidAnswer}
@@ -476,7 +486,7 @@ const ManageQA = () => {
             questions && questions.length > 0 && (
               <div className="save-btn">
                 <Button variant="primary" onClick={handleSaveButton}>
-                  Save Questions
+                  {t("admin.manageQuiz.addQuizQA.saveButton")}
                 </Button>
               </div>
             )

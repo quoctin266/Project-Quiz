@@ -1,5 +1,314 @@
 {
+    "header": {
+        "homeNavigate": "Home",
+        "usersNavigate": "Users",
+        "adminNavigate": "Admin",
+        "welcome": "Welcome,",
+        "options": "Account",
+        "profileOption": "Profile",
+        "helpOption": "Help & support",
+        "logoutOption": "Log out",
+        "loginOption": "Log in",
+        "signupOption": "Sign up",
+        "profile": {
+            "title": "Profile",
+            "tab1": "Personal Info",
+            "roleLabel": "Role",
+            "usernameLabel": "Username",
+            "usernamePlaceholder": "Username",
+            "imageLabel": "Image",
+            "previewImage": "Preview Image",
+            "closeButton": "Close",
+            "saveButton": "Save",
+            
+            "tab2": "Change Password",
+            "currentPassword": "Current password",
+            "currentPasswordPlaceholder": "Password",
+            "newPassword": "New password",
+            "newPasswordPlaceholder": "Password",
+            "confirmNewPassword": "Confirm new password",
+            "confirmNewPasswordPlaceholder": "Password",
+            "confirmButton": "Confirm",
+
+            "tab3": "History",
+            "listTitle": "Attempt List",
+            "quizName": "Quiz name",
+            "countQuestion": "Total Questions",
+            "countCorrect": "Total Correct Answers",
+            "submitTime": "Submit Time",
+            "emptyList": "No attempt has been made yet..."
+        },
+        "notification": {
+            "logoutError": "Log out failed. Something went wrong."
+        }
+
+    },
+
     "home": {
-    "bannerTitle": "There's a better way to learn"
+    "bannerTitle": "There's a better way to learn",
+    "bannerDescription": "Reading books is boring? Make your studying more interesting right now! Learn and solidify your knowledge through countless quizzes. ",
+    "buttonStartQuiz": "Start your quiz now",
+    "buttonSignup": "Get started - it's free"
+    },
+    
+    "users": {
+        "startButton": "Start now",
+        "noQuizMessage": "No Quiz available currently...",
+        "quiz": {
+            "header": {
+                "homeNavigate": "Home",
+                "userNavigate": "User",
+                "currentQuiz": "Doing Quiz"
+            },
+            "body": {
+                "question": "Question"
+            },
+            "buttonGroup": {
+                "previousButton": "Prev",
+                "nextButton": "Next",
+                "finishButton": "Finish",
+                "doneButton": "Done"
+            }
+        },
+        "result": {
+            "title": "Test Result",
+            "questionCount": "Total Questions:",
+            "correctAnswerCount": "Total Correct Answers:",
+            "closeButton": "Go back",
+            "showAnswerButton": "Show answers"
+        },
+        "notification": {
+            "errorSubmit": "Submit failed. Something went wrong."
+        }
+    },
+
+    "login": {
+        "header": {
+            "message": "Don't have an account yet?",
+            "signupButton": "Sign up"
+        },
+        "body": {
+            "title": "Login",
+            "emailLabel": "Email address",
+            "emailPlaceholder": "Enter email",
+            "passwordLabel": "Password",
+            "passwordPlaceholder": "Password",
+            "resetPasswordLink": "Forgot password?",
+            "rememberOption": "Remember me",
+            "loginButton": "Login",
+            "homeNavigate": "<< Go to Homepage"
+        },
+        "notification": {
+            "missingField": "Missing one or more fields!",
+            "invalidEmail": "Invalid email format!",
+            "loginSuccess": "Login successfully.",
+            "notFoundEmail": "Not found user with current email.",
+            "wrongPassword": "Incorrect password.",
+            "error": "Log in failed. Something went wrong."
+        }
+    },
+
+    "register": {
+        "header": {
+            "message": "Already have an account?",
+            "loginButton": "Log in"
+        },
+        "body": {
+            "title": "Free and always will be",
+            "emailLabel": "Email address",
+            "emailPlaceholder": "Enter email",
+            "passwordLabel": "Password",
+            "passwordPlaceholder": "Password",
+            "usernameLabel": "Username",
+            "usernamePlaceholder": "Username",
+            "agreement": "I agree to LearnByQuiz's Terms of Service, Privacy Policy and Data Processing Agreement.",
+            "registerButton": "Create my free account",
+            "homeNavigate": "<< Go to Homepage"
+        },
+        "notification": {
+            "missingField": "Missing one or more fields!",
+            "invalidEmail": "Invalid email format!",
+            "invalidPassword": "Password must contain at least 8 characters!",
+            "agreeTerms": "Please accept the terms and conditions to finish the signup",
+            "registerSuccess": "Created account succesfully.",
+            "emailTaken": "This email has already been used.",
+            "error": "Register failed. Something went wrong."
+        }
+    },
+
+    "admin": {
+        "header": {
+            "options": "Setting",
+            "profileOption": "Profile",
+            "helpOption": "Help & support",
+            "logoutOption": "Log out"
+        },
+        "dashboard": {
+            "title": "Analytics Dashboard",
+            "countAccount": "Total Accounts",
+            "countAdmin": "Total Admins",
+            "countUsers": "Total Users",
+            "countQuiz": "Total Quizzes"
+        },
+        "manageUser": {
+            "title": "Manage User",
+            "table": {
+                "number": "No",
+                "username": "Username",
+                "email": "Email",
+                "role": "Role",
+                "buttonGroup": "Action",
+                "noUser":   "Not Found"
+            },
+            "paginatePrev": "< Previous",
+            "paginateNext": "Next >",
+            "formCreate": {
+                "openformButton": "Add New User",
+                "title": "Add new user",
+                "usernameLabel": "Username",
+                "usernamePlaceholder": "Username",
+                "passwordLabel": "Password",
+                "passwordPlaceholder": "Password",
+                "emailLabel": "Email",
+                "emailPlaceholder": "Enter email",
+                "roleLabel": "Role",
+                "user": "USER",
+                "admin": "ADMIN",
+                "imageLabel": "Image",
+                "previewImage": "Preview Image",
+                "closeButton": "Cancel",
+                "saveButton": "Save"
+            },
+
+            "formDelete": {
+                "openButton": "Delete",
+                "title": "Confirm delete user",
+                "confirmMessage": "Are you sure to delete this user?",
+                "cancelButton": "Cancel",
+                "confirmButton": "Confirm"
+            },
+
+            "formUpdate": {
+                "openformButton": "Update",
+                "title": "Update User Info",
+                "usernameLabel": "Username",
+                "usernamePlaceholder": "Username",
+                "passwordLabel": "Password",
+                "passwordPlaceholder": "Password",
+                "roleLabel": "Role",
+                "user": "USER",
+                "admin": "ADMIN",
+                "imageLabel": "Image",
+                "previewImage": "Preview Image",
+                "closeButton": "Cancel",
+                "saveButton": "Save"
+            },
+
+            "formView": {
+                "openformButton": "View",
+                "title": "User Detail Info",
+                "usernameLabel": "Username",
+                "roleLabel": "Role",
+                "imageLabel": "Image",
+                "previewImage": "Preview Image",
+                "closeButton": "Close"
+            }
+            
+        },
+
+        "manageQuiz": {
+            "title": "Manage Quiz",
+            "addQuiz": {
+                "header": "Add New Quiz",
+                "title": "Quiz info",
+                "nameLabel": "Name",
+                "descriptionLabel": "Description",
+                "selectPlaceholder": "Quiz type...",
+                "imageLabel": "Image",
+                "previewImage": "Preview Image",
+                "saveButton": "Save"
+                
+            },
+
+            "addQuizQA": {
+                "header": "Add Quiz QA",
+                "title": "Add Questions and answers",
+                "select": "Select Quiz:",
+                "selectPlaceholder": "Select...",
+                "addQuestion": "Add Questions:",
+                "imageLabel": "Upload Image:",
+                "viewImage": "View image",
+                "clearImage": "Clear Image",
+                "saveButton": "Save Questions"
+            },
+
+            "assignQuiz": {
+                "header": "Assign Quiz to User",
+                "selectQuiz": "Select Quiz:",
+                "selectQuizPlaceholder": "Select...",
+                "selectUser": "Select User:",
+                "selectUserPlaceholder": "Select...",
+                "assignButton": "Assign"
+            },
+
+            "quizTable": {
+                "title": "Quiz List",
+                "number": "No",
+                "name": "Name",
+                "description": "Description",
+                "type": "Type",
+                "buttonGroup": "Actions",
+
+                "quizDelete": {
+                    "openformButton": "Delete",
+                    "title": "Confirm delete quiz",
+                    "confirmMessage": "Are you sure to delete this quiz?",
+                    "name": "Name:",
+                    "description": "Description:",
+                    "cancelButton": "Cancel",
+                    "confirmButton": "Confirm"
+                },
+                "quizUpdate": {
+                    "openformButton": "Edit",
+                    "title": "Edit Quiz Info",
+                    "nameLabel": "Name",
+                    "namePlaceholder": "Name",
+                    "descriptionLabel": "Description",
+                    "descriptionPlaceholder": "Description",
+                    "difficultyLabel": "Difficulty",
+                    "easyOption": "EASY",
+                    "mediumOption": "MEDIUM",
+                    "hardOption": "HARD",
+                    "imageLabel": "Image",
+                    "closeButton": "Close",
+                    "saveButton": "Save"
+                }
+            }
+        },
+
+        "updateQuizQA": {
+            "select": "Select Quiz:",
+            "selectPlaceholder": "Select...",
+            "addQuestion": "Add Questions:",
+            "imageLabel": "Upload Image:",
+            "viewImage": "View image",
+            "clearImage": "Clear Image",
+            "saveButton": "Save Questions",
+            "emptyQuiz": "No question has been added yet..."
+        }
+       
+    },
+
+    "notFound": {
+        "title": "This Page Isn't Available",
+        "content": "The link may be broken, or the page may have been removed Check to see if the link you're trying to open is correct.",
+        "homeNavigate": "Go to HomePage"
+    },
+
+    "limitedAccess": {
+        "title": "Access denied",
+        "message1": "You don't have permissions to access this page.",
+        "message2": "Contact an administrator to get permissions or go to the home page and browse other pages.",
+        "homeNavigate": "Go to HomePage"
     }
 }

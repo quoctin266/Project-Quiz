@@ -1,5 +1,6 @@
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useTranslation } from "react-i18next";
+import { isEnglish } from "../../utils/i18n";
 
 const Language = () => {
   const { i18n } = useTranslation();
@@ -11,7 +12,7 @@ const Language = () => {
   return (
     <>
       <NavDropdown
-        title={i18n.language === "en" ? "English" : "Việt Nam"}
+        title={isEnglish() ? "English" : "Việt Nam"}
         id="collasible-nav-dropdown"
         className="language"
       >

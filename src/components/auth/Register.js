@@ -8,15 +8,38 @@ import { BiHide } from "react-icons/bi";
 import { BiShow } from "react-icons/bi";
 import { postRegister } from "../../services/APIService";
 import Language from "../header/Language";
+import { useTranslation } from "react-i18next";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordType, setPasswordType] = useState("password");
   const [username, setUsername] = useState("");
   const [checked, setChecked] = useState(false);
 
+  const [passwordType, setPasswordType] = useState("password");
+
+  const [invalidEmail, setInvalidEmail] = useState(false); //  controlling whether to display empty email warning or not
+  const [invalidPassword, setInvalidPassword] = useState(false); //  controlling whether to display empty password warning or not
+  const [invalidUsername, setInvalidUsername] = useState(false); //  controlling whether to display empty username warning or not
+  const [invalidCheckbox, setInvalidCheckbox] = useState(false); //  controlling whether to display not check agree warning or not
+
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  const handleOnchangeEmail = (event) => {
+    setEmail(event.target.value);
+    setInvalidEmail(false); // stop displaying warning after typing something
+  };
+
+  const handleOnchangePassword = (event) => {
+    setPassword(event.target.value);
+    setInvalidPassword(false); // stop displaying warning after typing something
+  };
+
+  const handleOnchangeUsername = (event) => {
+    setUsername(event.target.value);
+    setInvalidUsername(false); // stop displaying warning after typing something
+  };
 
   const handleLogin = () => {
     navigate("/login");
@@ -41,97 +64,120 @@ const Register = () => {
 
   const handleCheck = () => {
     setChecked(!checked);
+    setInvalidCheckbox(false);
   };
 
-  const handleSignup = async () => {
-    if (!username || !password || !email) {
-      toast.error("Missing one or more fields!");
+  const handleSignup = async (event) => {
+    event.preventDefault();
+
+    if (!email) {
+      setInvalidEmail(true);
+      toast.error(`${t("register.notification.missingField")}`);
+      return;
+    }
+
+    if (!password) {
+      setInvalidPassword(true);
+      toast.error(`${t("register.notification.missingField")}`);
+      return;
+    }
+    if (!username) {
+      setInvalidUsername(true);
+      toast.error(`${t("register.notification.missingField")}`);
       return;
     }
     if (!validateEmail(email)) {
-      toast.error("Invalid email format!");
+      toast.error(`${t("register.notification.invalidEmail")}`);
       return;
     }
     if (password.length < 8) {
-      toast.error("Password must contain at least 8 characters!");
+      toast.error(`${t("register.notification.invalidPassword")}`);
       return;
     }
     if (!checked) {
-      toast.error(
-        "Please accept the terms and conditions to finish the signup"
-      );
+      setInvalidCheckbox(true);
+      toast.error(`${t("register.notification.agreeTerms")}`);
       return;
     }
 
     let data = await postRegister(email, password, username);
     if (data && data.EC === 0) {
-      toast.success(data.EM);
+      toast.success(`${t("register.notification.registerSuccess")}`);
     } else {
-      toast.error(data.EM);
+      if (data.EC === -1)
+        toast.error(`${t("register.notification.emailTaken")}`);
+      else toast.error(`${t("register.notification.error")}`);
+      return;
     }
-    navigate("/");
+    navigate("/login");
   };
 
   return (
     <div className="signup-container">
       <div className="header">
-        <span>Already have an account?</span>
+        <span>{t("register.header.message")}</span>
 
         <Button variant="outline-secondary" type="button" onClick={handleLogin}>
-          Log in
+          {t("register.header.loginButton")}
         </Button>
         <Language className="language" />
       </div>
-      <div className="title">Learn By Quiz</div>
-      <div className="welcome">Free and always will be</div>
+      <div className="title">LearnByQuiz</div>
+      <div className="welcome">{t("register.body.title")}</div>
       <div className="form-content">
-        <Form>
+        <Form onSubmit={(event) => handleSignup(event)}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label>{t("register.body.emailLabel")}</Form.Label>
             <Form.Control
               type="email"
-              placeholder="Enter email"
+              placeholder={t("register.body.emailPlaceholder")}
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(event) => handleOnchangeEmail(event)}
+              isInvalid={invalidEmail}
             />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>{t("register.body.passwordLabel")}</Form.Label>
             <div className="password-container">
               <Form.Control
                 type={passwordType}
-                placeholder="Password"
+                placeholder={t("register.body.passwordPlaceholder")}
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(event) => handleOnchangePassword(event)}
+                isInvalid={invalidPassword}
                 className="password-input"
               />
-              <span className="password-toogle" onClick={togglePassword}>
-                {passwordType === "password" ? <BiShow /> : <BiHide />}
-              </span>
+              {!invalidPassword && (
+                <span className="password-toogle" onClick={togglePassword}>
+                  {passwordType === "password" ? <BiShow /> : <BiHide />}
+                </span>
+              )}
             </div>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicUsername">
-            <Form.Label>Username</Form.Label>
+            <Form.Label>{t("register.body.usernameLabel")}</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Username"
+              placeholder={t("register.body.usernamePlaceholder")}
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(event) => handleOnchangeUsername(event)}
+              isInvalid={invalidUsername}
             />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check
               type="checkbox"
-              label="I agree to LearnByQuiz’s Terms of Service, Privacy Policy and Data Processing Agreement."
-              onClick={handleCheck}
+              label={t("register.body.agreement")}
+              onClick={() => handleCheck()}
+              isInvalid={invalidCheckbox}
             />
           </Form.Group>
 
-          <Button variant="dark" type="button" onClick={handleSignup}>
-            Create my free account
+          <Button variant="dark" type="submit">
+            {t("register.body.registerButton")}
           </Button>
           <div className="back-btn">
             <span
@@ -139,7 +185,7 @@ const Register = () => {
                 navigate("/");
               }}
             >
-              &#60;&#60; Go to Homepage
+              {t("register.body.homeNavigate")}
             </span>
           </div>
         </Form>

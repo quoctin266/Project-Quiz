@@ -3,10 +3,15 @@ import Form from "react-bootstrap/Form";
 import { Lightbox } from "react-modal-image";
 import { useState } from "react";
 import "./Question.scss";
+import { useTranslation } from "react-i18next";
+import { RxCross2 } from "react-icons/rx";
+import { FcCheckmark } from "react-icons/fc";
 
 const Question = (props) => {
-  const { data, index } = props;
+  const { data, index, submitted } = props;
   const [previewImage, setPreviewImage] = useState("");
+
+  const { t } = useTranslation();
 
   if (_.isEmpty(data)) {
     return <></>;
@@ -31,24 +36,32 @@ const Question = (props) => {
           )}
         </div>
         <div className="question-title">
-          Question {index + 1}: {data.questionDes} ?
+          {t("users.quiz.body.question")} {index + 1}: {data.questionDes} ?
         </div>
       </div>
       <div className="answers">
         <Form>
           {data.answers &&
             data.answers.length > 0 &&
-            data.answers.map((item, index) => {
+            data.answers.map((item) => {
               return (
-                <Form.Check
-                  label={item.description}
-                  name="group1"
-                  type="radio"
-                  key={item.id}
-                  id={`default-radio-${item.id}`}
-                  onChange={() => props.handleSelectAnswer(item.id)}
-                  checked={item.isSelected}
-                />
+                <div key={item.id} className="answer">
+                  <Form.Check
+                    label={item.description}
+                    name="group1"
+                    type="radio"
+                    id={`default-radio-${item.id}`}
+                    onChange={() => props.handleSelectAnswer(item.id)}
+                    checked={item.isSelected}
+                    disabled={submitted} // disable choosing when viewing answers
+                  />
+
+                  {/* displaying check or cross according to correct or wrong answer */}
+                  {item.isCorrect && <FcCheckmark />}
+                  {item.isSelected && item.isCorrect === false && (
+                    <RxCross2 style={{ color: "red" }} />
+                  )}
+                </div>
               );
             })}
         </Form>

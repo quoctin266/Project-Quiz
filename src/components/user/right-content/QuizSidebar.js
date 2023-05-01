@@ -1,7 +1,8 @@
 import CountDown from "./CountDown";
 
 const QuizSidebar = (props) => {
-  const { dataQuiz, handleFinish, setCurrentIndex, currentIndex } = props;
+  const { dataQuiz, handleFinish, setCurrentIndex, currentIndex, submitted } =
+    props;
 
   const onTimesUp = () => {
     handleFinish();
@@ -26,7 +27,7 @@ const QuizSidebar = (props) => {
   return (
     <>
       <div className="timer">
-        <CountDown onTimesUp={onTimesUp} />
+        <CountDown onTimesUp={onTimesUp} submitted={submitted} />
       </div>
       <div className="list-question">
         {dataQuiz &&

@@ -8,6 +8,7 @@ import Image from "react-bootstrap/Image";
 import "./ModalFormStyle.scss";
 import { toast } from "react-toastify";
 import { putUpdateQuiz } from "../../../../services/APIService";
+import { useTranslation } from "react-i18next";
 
 const ModalFormUpdateQuiz = (props) => {
   const [show, setShow] = useState(false);
@@ -18,6 +19,8 @@ const ModalFormUpdateQuiz = (props) => {
   const [description, setDescription] = useState(props.item.description);
   const [difficulty, setDifficulty] = useState(props.item.difficulty);
   const [image, setImage] = useState("");
+
+  const { t } = useTranslation();
 
   const handleClose = () => {
     //closing without update, need to reset value
@@ -69,27 +72,39 @@ const ModalFormUpdateQuiz = (props) => {
   return (
     <>
       <Button variant="warning mx-2" onClick={handleShow}>
-        Edit
+        {t("admin.manageQuiz.quizTable.quizUpdate.openformButton")}
       </Button>
 
       <Modal show={show} onHide={handleClose} size="xl" backdrop="static">
         <Modal.Header closeButton>
-          <Modal.Title>Edit Quiz Info</Modal.Title>
+          <Modal.Title>
+            {t("admin.manageQuiz.quizTable.quizUpdate.title")}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Row className="mb-3">
               <Form.Group as={Col}>
-                <Form.Label>Name</Form.Label>
+                <Form.Label>
+                  {t("admin.manageQuiz.quizTable.quizUpdate.nameLabel")}
+                </Form.Label>
                 <Form.Control
+                  placeholder={t(
+                    "admin.manageQuiz.quizTable.quizUpdate.namePlaceholder"
+                  )}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Description</Form.Label>
+                <Form.Label>
+                  {t("admin.manageQuiz.quizTable.quizUpdate.descriptionLabel")}
+                </Form.Label>
                 <Form.Control
+                  placeholder={t(
+                    "admin.manageQuiz.quizTable.quizUpdate.descriptionPlaceholder"
+                  )}
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 />
@@ -98,14 +113,22 @@ const ModalFormUpdateQuiz = (props) => {
 
             <Row className="mb-3 ">
               <Form.Group as={Col}>
-                <Form.Label>Difficulty</Form.Label>
+                <Form.Label>
+                  {t("admin.manageQuiz.quizTable.quizUpdate.difficultyLabel")}
+                </Form.Label>
                 <Form.Select
                   onChange={(e) => setDifficulty(e.target.value)}
                   defaultValue={difficulty}
                 >
-                  <option value="EASY">EASY</option>
-                  <option value="MEDIUM">MEDIUM</option>
-                  <option value="HARD">HARD</option>
+                  <option value="EASY">
+                    {t("admin.manageQuiz.quizTable.quizUpdate.easyOption")}
+                  </option>
+                  <option value="MEDIUM">
+                    {t("admin.manageQuiz.quizTable.quizUpdate.mediumOption")}
+                  </option>
+                  <option value="HARD">
+                    {t("admin.manageQuiz.quizTable.quizUpdate.hardOption")}
+                  </option>
                 </Form.Select>
               </Form.Group>
               <Form.Group as={Col}></Form.Group>
@@ -113,19 +136,15 @@ const ModalFormUpdateQuiz = (props) => {
 
             <Row className="mb-3">
               <Form.Group>
-                <Form.Label>Image</Form.Label>
+                <Form.Label>
+                  {t("admin.manageQuiz.quizTable.quizUpdate.imageLabel")}
+                </Form.Label>
                 <Form.Control
                   type="file"
                   onChange={(e) => handleOnchangeImage(e)}
                 />
                 <div className="image-preview mt-3">
-                  {previewImage ? (
-                    <Image src={previewImage} />
-                  ) : (
-                    <span style={{ color: "rgb(180, 177, 177)" }}>
-                      Preview Image
-                    </span>
-                  )}
+                  {previewImage && <Image src={previewImage} />}
                 </div>
               </Form.Group>
             </Row>
@@ -133,10 +152,10 @@ const ModalFormUpdateQuiz = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            {t("admin.manageQuiz.quizTable.quizUpdate.closeButton")}
           </Button>
           <Button variant="primary" onClick={handleSubmitUpdate}>
-            Save
+            {t("admin.manageQuiz.quizTable.quizUpdate.saveButton")}
           </Button>
         </Modal.Footer>
       </Modal>
