@@ -11,6 +11,7 @@ import QuizSidebar from "./right-content/QuizSidebar";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Scrollbars } from "react-custom-scrollbars-2";
 
 const DetailQuiz = () => {
   const location = useLocation();
@@ -146,58 +147,67 @@ const DetailQuiz = () => {
         </Breadcrumb.Item>
       </Breadcrumb>
 
-      <div className="detail-quiz-container">
-        <div className="left-content">
-          <div className="title">
-            Quiz {quizId}: {location?.state?.quizTitle}{" "}
-            {/* retrieve quiz title from list quiz page navigation */}
+      <Scrollbars
+        style={{ height: "85vh" }}
+        autoHide
+        // Hide delay in ms
+        autoHideTimeout={1000}
+        // Duration for hide animation in ms.
+        autoHideDuration={200}
+      >
+        <div className="detail-quiz-container">
+          <div className="left-content">
+            <div className="title">
+              Quiz {quizId}: {location?.state?.quizTitle}{" "}
+              {/* retrieve quiz title from list quiz page navigation */}
+            </div>
+            <hr />
+            <div className="question-container">
+              {/* passing current question infomation */}
+              <Question
+                data={
+                  dataQuiz && dataQuiz.length > 0 ? dataQuiz[currentIndex] : {}
+                }
+                index={currentIndex}
+                handleSelectAnswer={handleSelectAnswer}
+                submitted={submitted}
+              />
+            </div>
+            <div className="footer">
+              <Button variant="secondary" onClick={handlePrev}>
+                {t("users.quiz.buttonGroup.previousButton")}
+              </Button>
+              <Button variant="primary" onClick={handleNext}>
+                {t("users.quiz.buttonGroup.nextButton")}
+              </Button>
+              {!submitted ? (
+                <Button variant="warning" onClick={handleFinish}>
+                  {t("users.quiz.buttonGroup.finishButton")}
+                </Button>
+              ) : (
+                <Button variant="warning" onClick={() => navigate("/user")}>
+                  {t("users.quiz.buttonGroup.doneButton")}
+                </Button>
+              )}
+            </div>
           </div>
-          <hr />
-          <div className="question-container">
-            {/* passing current question infomation */}
-            <Question
-              data={
-                dataQuiz && dataQuiz.length > 0 ? dataQuiz[currentIndex] : {}
-              }
-              index={currentIndex}
-              handleSelectAnswer={handleSelectAnswer}
+          <div className="right-content">
+            <QuizSidebar
+              dataQuiz={dataQuiz}
+              handleFinish={handleFinish}
+              setCurrentIndex={setCurrentIndex}
+              currentIndex={currentIndex}
               submitted={submitted}
             />
           </div>
-          <div className="footer">
-            <Button variant="secondary" onClick={handlePrev}>
-              {t("users.quiz.buttonGroup.previousButton")}
-            </Button>
-            <Button variant="primary" onClick={handleNext}>
-              {t("users.quiz.buttonGroup.nextButton")}
-            </Button>
-            {!submitted ? (
-              <Button variant="warning" onClick={handleFinish}>
-                {t("users.quiz.buttonGroup.finishButton")}
-              </Button>
-            ) : (
-              <Button variant="warning" onClick={() => navigate("/user")}>
-                {t("users.quiz.buttonGroup.doneButton")}
-              </Button>
-            )}
-          </div>
-        </div>
-        <div className="right-content">
-          <QuizSidebar
-            dataQuiz={dataQuiz}
-            handleFinish={handleFinish}
-            setCurrentIndex={setCurrentIndex}
-            currentIndex={currentIndex}
-            submitted={submitted}
+          <ModalResult
+            showModal={showModal}
+            setShowModal={setShowModal}
+            dataModal={dataModal}
+            handleShowAnswers={handleShowAnswers}
           />
         </div>
-        <ModalResult
-          showModal={showModal}
-          setShowModal={setShowModal}
-          dataModal={dataModal}
-          handleShowAnswers={handleShowAnswers}
-        />
-      </div>
+      </Scrollbars>
     </>
   );
 };
