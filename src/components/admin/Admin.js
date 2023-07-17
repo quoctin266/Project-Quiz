@@ -28,15 +28,23 @@ const Admin = () => {
       navigate("/login");
     } else toast.error(data.EM);
   };
+
+  const handleCollapse = () => {
+    setCollapsed(!collapsed);
+    if (!collapsed)
+      document.getElementById("footer-text").style.display = "none";
+    else document.getElementById("footer-text").style.display = "inline";
+  };
+
   return (
     <div className="admin-container">
       <div className="sidebar-container">
-        <SideBar collapsed={collapsed} />
+        <SideBar collapsed={collapsed} setCollapsed={setCollapsed} />
       </div>
       <div className="admin-content">
         <div className="admin-header">
           <span className="icon-collapse">
-            <FaBars onClick={() => setCollapsed(!collapsed)} />
+            <FaBars onClick={() => handleCollapse()} />
           </span>
           <div className="setting">
             <div className="account-setting">
