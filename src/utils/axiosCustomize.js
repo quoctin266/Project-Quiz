@@ -15,11 +15,17 @@ axiosRetry(instance, {
   retries: 3,
   retryDelay: () => 4000,
   retryCondition: () => true,
-  onRetry: async () => {
+  onRetry: async (retryCount) => {
+    if (retryCount === 3) {
+      nprogress.done();
+      return;
+    }
     // retrieve refresh token and email from redux
     const refresh_token =
       store?.getState()?.userAccount?.account?.refresh_token;
     const email = store?.getState()?.userAccount?.account?.email;
+    if (!refresh_token || !email) return;
+
     // get new access token
     let data = await postRefreshToken(email, refresh_token);
 

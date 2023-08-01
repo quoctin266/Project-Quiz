@@ -14,10 +14,20 @@ import { FaGem } from "react-icons/fa";
 import { DiReact } from "react-icons/di";
 import { MdDashboard } from "react-icons/md";
 import { AiOutlineHome } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { CgClose } from "react-icons/cg";
 
 const SideBar = (props) => {
-  const { collapsed, rtl, toggled, handleToggleSidebar } = props;
+  const { collapsed, rtl, toggled, handleToggleSidebar, setCollapsed } = props;
+  const navigate = useNavigate();
+
+  const handleCollapseMobile = () => {
+    setCollapsed(true);
+    if (!collapsed)
+      document.getElementById("footer-text").style.display = "none";
+    else document.getElementById("footer-text").style.display = "inline";
+  };
+
   return (
     <ProSidebar
       image={sidebarImage}
@@ -30,18 +40,29 @@ const SideBar = (props) => {
       <SidebarHeader>
         <div
           style={{
-            padding: "24px",
+            padding: "18px",
             textTransform: "uppercase",
             fontWeight: "bold",
             fontSize: 14,
             letterSpacing: "1px",
             overflow: "hidden",
-            textOverflow: "ellipsis",
+            textOverflow: "clip",
             whiteSpace: "nowrap",
           }}
         >
-          <DiReact size={"3em"} color={"00bfff"} />
-          <span>Admin</span>
+          <DiReact
+            size={"3em"}
+            color={"00bfff"}
+            cursor={"pointer"}
+            onClick={() => navigate("/")}
+          />
+          <span className="header-text">Admin</span>
+          <span
+            onClick={() => handleCollapseMobile()}
+            className="close-btn-mobile"
+          >
+            <CgClose />
+          </span>
         </div>
       </SidebarHeader>
 
@@ -72,7 +93,7 @@ const SideBar = (props) => {
         <div
           className="sidebar-btn-wrapper"
           style={{
-            padding: "30px 24px",
+            padding: "30px 15px",
           }}
         >
           <NavLink to="/" className="sidebar-btn">
@@ -83,6 +104,7 @@ const SideBar = (props) => {
                 textOverflow: "ellipsis",
                 overflow: "hidden",
               }}
+              id="footer-text"
             >
               Learn By Quiz
             </span>

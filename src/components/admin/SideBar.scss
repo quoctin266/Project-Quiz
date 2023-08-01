@@ -6,7 +6,7 @@
     .sidebar-btn {
         transition     : width 0.3s;
         width          : 200px;
-        padding        : 30px 20px;
+        padding        : 30px 0px;
         border-radius  : 40px;
         background     : rgba(255, 255, 255, 0.05);
         color          : #adadad;
@@ -28,5 +28,28 @@
         &:hover {
             color: white;
         }
+    }
+}
+
+.header-text {
+    position: absolute;
+    top     : 30px;
+    left    : 85px
+}
+
+.close-btn-mobile {
+    float      : right;
+    color      : white;
+    font-size  : 1.8em;
+    font-weight: bolder;
+    cursor     : pointer;
+
+    @media screen and (min-width: 768px) {
+        display: none;
+
+    }
+
+    &:hover {
+        color: rgb(138, 138, 138);
     }
 }
